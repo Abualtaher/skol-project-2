@@ -3,28 +3,31 @@ import { Link } from "gatsby";
 
 function MyNavBar() {
   return (
-    <nav class="bg-neutral-primary fixed w-full z-20 top-0 start-0 border-b border-default">
-      <div class="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link to="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+    <nav className="bg-neutral-primary fixed w-full z-20 top-0 start-0 border-b border-default">
+      <div className="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <Link
+          to="/"
+          className="flex items-center space-x-3 rtl:space-x-reverse"
+        >
           {/* <img
             src="https://flowbite.com/docs/images/logo.svg"
             class="h-7"
             alt="Flowbite Logo"
           /> */}
-          <span class="self-center text-xl text-heading font-semibold whitespace-nowrap">
+          <span className="self-center text-xl text-heading font-semibold whitespace-nowrap">
             Wisam
           </span>
         </Link>
         <button
           data-collapse-toggle="navbar-default"
           type="button"
-          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
+          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
           aria-controls="navbar-default"
           aria-expanded="false"
         >
-          <span class="sr-only">Open main menu</span>
+          <span className="sr-only">Open main menu</span>
           <svg
-            class="w-6 h-6"
+            className="w-6 h-6"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -40,12 +43,12 @@ function MyNavBar() {
             />
           </svg>
         </button>
-        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary">
+        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary">
             <li>
               <Link
                 to="/"
-                class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent"
+                className="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent"
               >
                 Home
               </Link>
@@ -53,7 +56,7 @@ function MyNavBar() {
             <li>
               <Link
                 to="/portfolio"
-                class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent"
+                className="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent"
               >
                 Portfolio
               </Link>
@@ -61,7 +64,7 @@ function MyNavBar() {
             <li>
               <Link
                 to="/about"
-                class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent"
+                className="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent"
               >
                 About
               </Link>
