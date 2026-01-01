@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import Layout from "../components/layout";
-import navBar from "../components/MyNavbar";
 
 const IndexPage = () => {
   return (
