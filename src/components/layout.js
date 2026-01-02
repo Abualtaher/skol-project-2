@@ -1,5 +1,5 @@
 import * as React from "react";
-import MyNavBar from "./MyNavbar";
+import MyNavbar from "./myNavbar";
 import { Link } from "gatsby";
 import { container } from "../styles/layout.module.css";
 const Layout = ({ children }) => {
@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
     <div className={container}>
       <header>
         <nav>
-          <MyNavBar />
+          <MyNavbar />
         </nav>
       </header>
       <main>{children}</main>
