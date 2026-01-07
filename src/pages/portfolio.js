@@ -2,9 +2,9 @@ import * as React from "react";
 import Layout from "../components/layout";
 import { Link, graphql, useStaticQuery } from "gatsby";
 
-const portfolioPage = () => {
+const PortfolioPage = () => {
   const data = useStaticQuery(graphql`
-    query MyQuery {
+    query {
       allContentfulPortfolioItem {
         nodes {
           slug
@@ -13,22 +13,21 @@ const portfolioPage = () => {
       }
     }
   `);
-  if (!data?.allContentfulPortfolio?.edges) {
-    return (
-      <Layout>
-        <h1>Portfolio</h1>
-        <Link to="/">Home</Link>
-      </Layout>
-    );
-  }
+  const items = data.allContentfulPortfolioItem.nodes;
   return (
     <Layout>
       <h1>Portfolio</h1>
-      <Link to="/">Home</Link>
+      <ul>
+        {items.map((items) => (
+          <li key={items.slug}>
+            <Link to={`/portfolio/${items.slug}`}>{items.title}</Link>
+          </li>
+        ))}
+      </ul>
     </Layout>
   );
 };
 
 export const Head = () => <title>Portfolio</title>;
 
-export default portfolioPage;
+export default PortfolioPage;
