@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "gatsby";
+import { StaticImage } from "gatsby-plugin-image";
 
 function MyNavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,14 +11,13 @@ function MyNavBar() {
           to="/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
-          {/* <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            class="h-7"
-            alt="Flowbite Logo"
-          /> */}
-          <span className="self-center text-xl text-heading font-semibold whitespace-nowrap">
-            Wisam
-          </span>
+          <StaticImage
+            src="../images/logo.jpg"
+            alt="logo"
+            placeholder="blurred"
+            wedth={50}
+            height={50}
+          />
         </Link>
         <button
           onClick={() => setIsOpen(!isOpen)}
