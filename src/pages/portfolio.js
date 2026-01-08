@@ -1,6 +1,6 @@
 import * as React from "react";
 import Layout from "../components/layout";
-import { Link, graphql, useStaticQuery } from "gatsby";
+import { Link, graphql } from "gatsby";
 
 const PortfolioPage = ({ data }) => {
   const items = data.allContentfulPortfolioItem.nodes;
@@ -8,9 +8,9 @@ const PortfolioPage = ({ data }) => {
     <Layout>
       <h1>Portfolio</h1>
       <ul>
-        {items.map((items) => (
-          <li key={items.slug}>
-            <Link to={`/portfolio/${items.slug}`}>{items.title}</Link>
+        {items.map((item) => (
+          <li key={item.slug}>
+            <Link to={`/portfolio/${item.slug}`}>{item.title}</Link>
           </li>
         ))}
       </ul>
