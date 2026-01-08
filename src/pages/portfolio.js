@@ -2,17 +2,7 @@ import * as React from "react";
 import Layout from "../components/layout";
 import { Link, graphql, useStaticQuery } from "gatsby";
 
-const PortfolioPage = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      allContentfulPortfolioItem {
-        nodes {
-          slug
-          title
-        }
-      }
-    }
-  `);
+const PortfolioPage = ({ data }) => {
   const items = data.allContentfulPortfolioItem.nodes;
   return (
     <Layout>
@@ -27,6 +17,16 @@ const PortfolioPage = () => {
     </Layout>
   );
 };
+export const query = graphql`
+  {
+    allContentfulPortfolioItem {
+      nodes {
+        title
+        slug
+      }
+    }
+  }
+`;
 
 export const Head = () => <title>Portfolio</title>;
 
