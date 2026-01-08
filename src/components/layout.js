@@ -1,6 +1,5 @@
 import * as React from "react";
 import MyNavbar from "./myNavbar";
-import { Link } from "gatsby";
 import { container } from "../styles/layout.module.css";
 const Layout = ({ children }) => {
   return (
