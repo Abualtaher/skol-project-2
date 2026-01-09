@@ -27,7 +27,7 @@ export const query = graphql`
       slug
       title
       image {
-        gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED, width: 800)
+        gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED, width: 500)
         description
       }
     }
