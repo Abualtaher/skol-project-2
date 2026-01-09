@@ -17,6 +17,7 @@ const PortfolioItemPage = ({ data }) => {
           alt={item.image?.description || item.title}
         />
       )}
+      {item.image?.description && <p>{item.image.description}</p>}
     </Layout>
   );
 };
