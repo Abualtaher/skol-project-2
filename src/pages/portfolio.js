@@ -1,6 +1,7 @@
 import * as React from "react";
 import Layout from "../components/layout";
 import { Link, graphql } from "gatsby";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 const PortfolioPage = ({ data }) => {
   const items = data.allContentfulPortfolioItem.nodes;
@@ -10,7 +11,12 @@ const PortfolioPage = ({ data }) => {
       <ul>
         {items.map((item) => (
           <li key={item.slug}>
-            <Link to={`/portfolio/${item.slug}`}>{item.title}</Link>
+            <Link to={`/portfolio/${item.slug}`}>
+              {item.title}
+              {item.description && (
+                <div>{renderRichText(item.description)}</div>
+              )}
+            </Link>
           </li>
         ))}
       </ul>
@@ -23,6 +29,9 @@ export const query = graphql`
       nodes {
         title
         slug
+        description {
+          raw
+        }
       }
     }
   }
