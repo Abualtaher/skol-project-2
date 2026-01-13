@@ -8,7 +8,6 @@ const IndexPage = ({ data }) => {
   return (
     <Layout pages={pages}>
       <h1>Home</h1>
-      {/* Optional: display filtered results here if you want */}
     </Layout>
   );
 };

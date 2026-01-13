@@ -27,22 +27,17 @@ const Layout = ({ children }) => {
 
   return (
     <div className={container}>
-      <header>
+      <header className="relative flex-col gap-3 mb-4">
         <nav>
           <MyNavbar />
         </nav>
 
-        <SearchBar value={query} onChange={setQuery} />
+        <div className="flex justify-end">
+          <SearchBar value={query} onChange={setQuery} />
+        </div>
+
         {query && (
-          <ul
-            style={{
-              background: "#fff",
-              border: "1px solid #ccc",
-              padding: "10px",
-              position: "absolute",
-              zIndex: 1000,
-            }}
-          >
+          <ul className="absolute bg-white border border-gray-300 p-3 z-50 w-64 right-4">
             {filtered.length ? (
               filtered.map((page) => (
                 <li key={page.id}>
