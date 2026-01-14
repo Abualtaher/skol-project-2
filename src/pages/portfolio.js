@@ -1,5 +1,5 @@
 import * as React from "react";
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 import { Link, graphql } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 
