@@ -70,7 +70,7 @@ function MyFooter() {
           <hr className="my-6 border-default sm:mx-auto lg:my-8" />
           <div className="sm:flex sm:items-center sm:justify-between">
             <span className="text-sm text-body sm:text-center">
-              © 2023 Flowbite™ . All Rights Reserved.
+              © 2026 Wisam™ . All Rights Reserved.
             </span>
             <div className="flex mt-4 sm:justify-center sm:mt-0">
               <svg
@@ -148,7 +148,7 @@ function MyFooter() {
                   clip-rule="evenodd"
                 />
               </svg>
-              <span className="sr-only">Dribbble account</span>
+              <span className="sr-only"></span>
             </div>
           </div>
         </div>
