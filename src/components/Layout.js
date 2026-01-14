@@ -1,8 +1,8 @@
 import * as React from "react";
-import MyNavbar from "./myNavbar";
+import MyNavbar from "./MyNavbar";
 import SearchBar from "./SearchBar";
 import { graphql, useStaticQuery } from "gatsby";
-import MyFooter from "./myFooter";
+import MyFooter from "./MyFooter";
 
 const Layout = ({ children }) => {
   const [query, setQuery] = React.useState("");
