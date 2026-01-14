@@ -6,6 +6,7 @@ import SearchBar from "./SearchBar";
 function MyNavbar({ query, setQuery }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Fetch menu items from Contentful
   const data = useStaticQuery(graphql`
     query {
       allContentfulMenuItem(sort: { order: ASC }) {
@@ -22,11 +23,23 @@ function MyNavbar({ query, setQuery }) {
 
   const menuItems = data.allContentfulMenuItem.nodes;
 
+  // Helper to build the path
+  const getPath = (slug) => {
+    if (!slug || slug.trim() === "") return "/home";
+    if (slug === "portfolio") return "/portfolio";
+    return `/${slug.trim()}`;
+  };
+
+  // Find first menu item with a valid slug for logo link
+  const firstSlugItem = menuItems.find((item) => item.page?.slug);
+  const logoPath = getPath(firstSlugItem?.page?.slug);
+
   return (
     <nav className="bg-neutral-primary fixed w-full z-20 top-0 start-0 border-b border-default">
       <div className="max-w-7xl w-full grid grid-cols-3 items-center mx-auto p-4 gap-4">
+        {/* Logo */}
         <Link
-          to="/"
+          to={logoPath}
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <StaticImage
@@ -38,11 +51,14 @@ function MyNavbar({ query, setQuery }) {
           />
         </Link>
 
+        {/* Search Bar in the middle */}
         <div className="hidden md:flex justify-center">
           <SearchBar value={query} onChange={setQuery} />
         </div>
 
+        {/* Menu Items */}
         <div className="flex items-center justify-end gap-4">
+          {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             type="button"
@@ -66,16 +82,11 @@ function MyNavbar({ query, setQuery }) {
             </svg>
           </button>
 
+          {/* Desktop menu */}
           <div id="navbar-menu" className="hidden md:block">
             <ul className="font-medium flex flex-row space-x-8 rtl:space-x-reverse">
               {menuItems.map((item) => {
-                const path =
-                  !item.page?.slug || item.page.slug === ""
-                    ? "/"
-                    : item.page.slug === "portfolio"
-                    ? "/portfolio"
-                    : `/${item.page.slug}`;
-
+                const path = getPath(item.page?.slug);
                 return (
                   <li key={item.order}>
                     <Link
@@ -91,18 +102,13 @@ function MyNavbar({ query, setQuery }) {
           </div>
         </div>
 
+        {/* Mobile menu dropdown */}
         {isOpen && (
-          <div className="col-span-3 flex flex-col gap-4 md:hidden">
+          <div className="col-span-3 flex flex-col gap-4 md:hidden mt-2">
             <SearchBar value={query} onChange={setQuery} />
             <ul className="font-medium flex flex-col space-y-2">
               {menuItems.map((item) => {
-                const path =
-                  !item.page?.slug || item.page.slug === ""
-                    ? "/"
-                    : item.page.slug === "portfolio"
-                    ? "/portfolio"
-                    : `/${item.page.slug}`;
-
+                const path = getPath(item.page?.slug);
                 return (
                   <li key={item.order}>
                     <Link
