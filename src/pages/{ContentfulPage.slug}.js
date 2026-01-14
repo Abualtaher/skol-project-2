@@ -2,6 +2,7 @@ import * as React from "react";
 import Layout from "../components/layout";
 import { graphql, Link } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const Page = ({ data }) => {
   const page = data.contentfulPage;
@@ -15,15 +16,19 @@ const Page = ({ data }) => {
           {renderRichText(page.body)}
         </div>
       )}
+      {page.hero?.gatsbyImageData && (
+        <GatsbyImage
+          className="rounded-lg shadow-lg my-6"
+          image={page.hero.gatsbyImageData}
+          alt={page.hero.description}
+        />
+      )}
 
       {portfolioItems.length > 0 && (
         <section>
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-            Portfolio
-          </h2>
           <ul className="list-disc pl-5 space-y-2">
             {portfolioItems.map((item) => (
-              <li className="leading-relaxed" key={item.slug}>
+              <li key={item.slug}>
                 <Link to={`/portfolio/${item.slug}`}>{item.title}</Link>
               </li>
             ))}
@@ -41,6 +46,10 @@ export const query = graphql`
     contentfulPage(slug: { eq: $slug }) {
       title
       slug
+      hero {
+        description
+        gatsbyImageData(layout: CONSTRAINED, sizes: "800", placeholder: BLURRED)
+      }
       body {
         raw
       }
