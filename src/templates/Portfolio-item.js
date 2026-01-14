@@ -9,16 +9,16 @@ const PortfolioItemPage = ({ data }) => {
 
   return (
     <Layout>
-      <h1>{item.title}</h1>
-      <p>{item.slug}</p>
+      <h1 className="text-4xl font-bold mb-4">{item.title}</h1>
+      <p className="text-lg text-gray-600 mb-10">{item.slug}</p>
       {item.description && <div>{renderRichText(item.description)}</div>}
 
       {item.images?.map((image) => {
         return (
           <GatsbyImage
+            className="rounded-lg shadow-lg my-6"
             image={image.gatsbyImageData}
             alt={image.description || item.title}
-            className="photo mx-auto"
           />
         );
       })}

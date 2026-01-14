@@ -9,15 +9,21 @@ const Page = ({ data }) => {
 
   return (
     <Layout>
-      <h1>{page.title}</h1>
-      {page.body && <div>{renderRichText(page.body)}</div>}
+      <h1 className="text-4xl font-bold mb-4">{page.title}</h1>
+      {page.body && (
+        <div className="text-lg text-gray-600 mb-10">
+          {renderRichText(page.body)}
+        </div>
+      )}
 
       {portfolioItems.length > 0 && (
         <section>
-          <h2>Portfolio</h2>
-          <ul>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+            Portfolio
+          </h2>
+          <ul className="list-disc pl-5 space-y-2">
             {portfolioItems.map((item) => (
-              <li key={item.slug}>
+              <li className="leading-relaxed" key={item.slug}>
                 <Link to={`/portfolio/${item.slug}`}>{item.title}</Link>
               </li>
             ))}
