@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import { graphql, Link } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { GatsbyImage } from "gatsby-plugin-image";
+import Seo from "../components/Seo";
 
 const Page = ({ data }) => {
   const page = data.contentfulPage;
@@ -10,6 +11,10 @@ const Page = ({ data }) => {
 
   return (
     <Layout>
+      <Seo
+        title={page.title}
+        description={page.body?.raw ? page.body.raw.slice(0, 160) : undefined}
+      />
       <div className="flex flex-col items-center text-center">
         <h1 className="text-4xl font-bold mb-4">{page.title}</h1>
 

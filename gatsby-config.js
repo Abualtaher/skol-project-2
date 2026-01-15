@@ -11,7 +11,10 @@ module.exports = {
     siteUrl: `https://www.yourdomain.tld`,
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-robots-txt`,
     "gatsby-transformer-remark",
+    `gatsby-plugin-react-helmet`,
     {
       resolve: "gatsby-source-contentful",
       options: {
