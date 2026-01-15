@@ -10,20 +10,16 @@ const PortfolioItemPage = ({ data }) => {
   return (
     <Layout>
       <div className="flex flex-col items-center text-center">
-        {/* Title */}
         <h1 className="text-4xl font-bold mb-4">{item.title}</h1>
 
-        {/* Slug or short info */}
         <p className="text-lg text-gray-600 mb-10">{item.slug}</p>
 
-        {/* Description */}
         {item.description && (
           <div className="text-lg text-gray-600 mb-10 max-w-prose">
             {renderRichText(item.description)}
           </div>
         )}
 
-        {/* Images */}
         {item.images?.map((image) => (
           <GatsbyImage
             key={image.description || image.gatsbyImageData.images.fallback.src}
@@ -33,7 +29,6 @@ const PortfolioItemPage = ({ data }) => {
           />
         ))}
 
-        {/* Single image description */}
         {item.image?.description && (
           <p className="text-gray-600 mt-2">{item.image.description}</p>
         )}

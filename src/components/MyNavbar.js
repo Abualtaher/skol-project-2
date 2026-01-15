@@ -34,7 +34,6 @@ function MyNavbar({ query, setQuery, filteredPages }) {
   return (
     <nav className="bg-white fixed top-0 w-full z-50 shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
-        {/* Logo (Left) */}
         <Link to={logoPath} className="flex items-center">
           <StaticImage
             src="../images/logo.jpg"
@@ -45,12 +44,10 @@ function MyNavbar({ query, setQuery, filteredPages }) {
           />
         </Link>
 
-        {/* Center Search Bar */}
         <div className="hidden md:flex flex-1 justify-center relative">
           <div className="w-64 relative">
             <SearchBar value={query} onChange={setQuery} />
 
-            {/* Search results */}
             {query && filteredPages.length > 0 && (
               <ul className="absolute bg-white border border-gray-300 shadow-md mt-1 w-full max-h-64 overflow-auto z-50">
                 {filteredPages.map((page) => (
@@ -61,7 +58,6 @@ function MyNavbar({ query, setQuery, filteredPages }) {
               </ul>
             )}
 
-            {/* No results found */}
             {query && filteredPages.length === 0 && (
               <div className="absolute bg-white border border-gray-300 shadow-md mt-1 w-full p-2 text-gray-500 z-50">
                 No results found
@@ -70,7 +66,6 @@ function MyNavbar({ query, setQuery, filteredPages }) {
           </div>
         </div>
 
-        {/* Menu Links (Right) */}
         <div className="hidden md:flex space-x-6 items-center justify-end">
           {menuItems.map((item) => {
             const path = getPath(item.page?.slug);
@@ -82,7 +77,6 @@ function MyNavbar({ query, setQuery, filteredPages }) {
           })}
         </div>
 
-        {/* Mobile Toggle */}
         <button
           className="md:hidden p-2 text-2xl ml-auto"
           onClick={() => setIsOpen(!isOpen)}
@@ -91,7 +85,6 @@ function MyNavbar({ query, setQuery, filteredPages }) {
         </button>
       </div>
 
-      {/* Mobile Dropdown */}
       {isOpen && (
         <div className="md:hidden px-4 pb-4">
           <SearchBar value={query} onChange={setQuery} />
@@ -106,7 +99,6 @@ function MyNavbar({ query, setQuery, filteredPages }) {
             </ul>
           )}
 
-          {/* Mobile: No results found */}
           {query && filteredPages.length === 0 && (
             <div className="bg-white border border-gray-300 shadow-md mt-1 w-full p-2 text-gray-500 z-50">
               No results found

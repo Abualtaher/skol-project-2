@@ -25,7 +25,6 @@ const Layout = ({ children }) => {
 
   return (
     <div className="min-h-screen flex flex-col items-center">
-      {/* Navbar */}
       <header className="w-full relative z-50">
         <MyNavbar
           query={query}
@@ -34,12 +33,10 @@ const Layout = ({ children }) => {
         />
       </header>
 
-      {/* Main content centered */}
       <main className="pt-28 px-4 w-full max-w-4xl mx-auto flex-1">
         {children}
       </main>
 
-      {/* Footer */}
       <footer className="w-full bg-gray-100 border-t mt-12">
         <MyFooter />
       </footer>
