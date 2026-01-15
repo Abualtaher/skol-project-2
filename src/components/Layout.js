@@ -3,6 +3,8 @@ import { graphql, useStaticQuery } from "gatsby";
 import MyNavbar from "./MyNavbar";
 import MyFooter from "./MyFooter";
 
+import { Container } from "../styles/layout.module.css";
+
 const Layout = ({ children }) => {
   const [query, setQuery] = React.useState("");
 
@@ -24,8 +26,7 @@ const Layout = ({ children }) => {
   );
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      {/* Navbar */}
+    <div className={Container}>
       <header className="relative z-50">
         <MyNavbar
           query={query}
@@ -34,12 +35,10 @@ const Layout = ({ children }) => {
         />
       </header>
 
-      {/* Main content */}
       <main className="flex-1 pt-28 px-4 max-w-7xl mx-auto w-full">
         {children}
       </main>
 
-      {/* Footer */}
       <footer className="bg-gray-100 border-t mt-12">
         <MyFooter />
       </footer>

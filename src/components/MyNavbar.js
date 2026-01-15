@@ -6,7 +6,6 @@ import SearchBar from "./SearchBar";
 function MyNavbar({ query, setQuery, filteredPages }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Fetch menu items from Contentful
   const data = useStaticQuery(graphql`
     query {
       allContentfulMenuItem(sort: { order: ASC }) {
@@ -34,8 +33,8 @@ function MyNavbar({ query, setQuery, filteredPages }) {
 
   return (
     <nav className="bg-white fixed top-0 w-full z-50 shadow-md">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-        {/* Logo */}
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
+        {/* Logo (Left) */}
         <Link to={logoPath} className="flex items-center">
           <StaticImage
             src="../images/logo.jpg"
@@ -46,26 +45,12 @@ function MyNavbar({ query, setQuery, filteredPages }) {
           />
         </Link>
 
-        {/* Desktop menu + search */}
-        <div className="flex-1 flex items-center justify-center space-x-4">
-          <div className="hidden md:flex space-x-6 items-center">
-            {menuItems.map((item) => {
-              const path = getPath(item.page?.slug);
-              return (
-                <Link
-                  key={item.order}
-                  to={path}
-                  className="hover:text-blue-500"
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </div>
-
-          {/* Desktop search */}
-          <div className="hidden md:block w-64 relative">
+        {/* Center Search Bar */}
+        <div className="hidden md:flex flex-1 justify-center relative">
+          <div className="w-64 relative">
             <SearchBar value={query} onChange={setQuery} />
+
+            {/* Search results */}
             {query && filteredPages.length > 0 && (
               <ul className="absolute bg-white border border-gray-300 shadow-md mt-1 w-full max-h-64 overflow-auto z-50">
                 {filteredPages.map((page) => (
@@ -75,22 +60,42 @@ function MyNavbar({ query, setQuery, filteredPages }) {
                 ))}
               </ul>
             )}
+
+            {/* No results found */}
+            {query && filteredPages.length === 0 && (
+              <div className="absolute bg-white border border-gray-300 shadow-md mt-1 w-full p-2 text-gray-500 z-50">
+                No results found
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Mobile menu toggle */}
+        {/* Menu Links (Right) */}
+        <div className="hidden md:flex space-x-6 items-center justify-end">
+          {menuItems.map((item) => {
+            const path = getPath(item.page?.slug);
+            return (
+              <Link key={item.order} to={path} className="hover:text-blue-500">
+                {item.label}
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* Mobile Toggle */}
         <button
-          className="md:hidden p-2 text-2xl"
+          className="md:hidden p-2 text-2xl ml-auto"
           onClick={() => setIsOpen(!isOpen)}
         >
           ☰
         </button>
       </div>
 
-      {/* Mobile dropdown */}
+      {/* Mobile Dropdown */}
       {isOpen && (
         <div className="md:hidden px-4 pb-4">
           <SearchBar value={query} onChange={setQuery} />
+
           {query && filteredPages.length > 0 && (
             <ul className="bg-white border border-gray-300 shadow-md mt-1 w-full max-h-64 overflow-auto z-50">
               {filteredPages.map((page) => (
@@ -100,6 +105,14 @@ function MyNavbar({ query, setQuery, filteredPages }) {
               ))}
             </ul>
           )}
+
+          {/* Mobile: No results found */}
+          {query && filteredPages.length === 0 && (
+            <div className="bg-white border border-gray-300 shadow-md mt-1 w-full p-2 text-gray-500 z-50">
+              No results found
+            </div>
+          )}
+
           <ul className="flex flex-col mt-2 space-y-2">
             {menuItems.map((item) => {
               const path = getPath(item.page?.slug);
