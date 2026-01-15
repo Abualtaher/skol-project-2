@@ -10,31 +10,35 @@ const Page = ({ data }) => {
 
   return (
     <Layout>
-      <h1 className="text-4xl font-bold mb-4">{page.title}</h1>
-      {page.body && (
-        <div className="text-lg text-gray-600 mb-10">
-          {renderRichText(page.body)}
-        </div>
-      )}
-      {page.hero?.gatsbyImageData && (
-        <GatsbyImage
-          className="rounded-lg shadow-lg my-6"
-          image={page.hero.gatsbyImageData}
-          alt={page.hero.description}
-        />
-      )}
+      <div className="flex flex-col items-center text-center">
+        <h1 className="text-4xl font-bold mb-4">{page.title}</h1>
 
-      {portfolioItems.length > 0 && (
-        <section>
-          <ul className="list-disc pl-5 space-y-2">
-            {portfolioItems.map((item) => (
-              <li key={item.slug}>
-                <Link to={`/portfolio/${item.slug}`}>{item.title}</Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+        {page.body && (
+          <div className="text-lg text-gray-600 mb-10 max-w-prose">
+            {renderRichText(page.body)}
+          </div>
+        )}
+
+        {page.hero?.gatsbyImageData && (
+          <GatsbyImage
+            className="rounded-lg shadow-lg my-6"
+            image={page.hero.gatsbyImageData}
+            alt={page.hero.description}
+          />
+        )}
+
+        {portfolioItems.length > 0 && (
+          <section>
+            <ul className="list-disc pl-5 space-y-2 text-left">
+              {portfolioItems.map((item) => (
+                <li key={item.slug}>
+                  <Link to={`/portfolio/${item.slug}`}>{item.title}</Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </div>
     </Layout>
   );
 };

@@ -9,21 +9,35 @@ const PortfolioItemPage = ({ data }) => {
 
   return (
     <Layout>
-      <h1 className="text-4xl font-bold mb-4">{item.title}</h1>
-      <p className="text-lg text-gray-600 mb-10">{item.slug}</p>
-      {item.description && <div>{renderRichText(item.description)}</div>}
+      <div className="flex flex-col items-center text-center">
+        {/* Title */}
+        <h1 className="text-4xl font-bold mb-4">{item.title}</h1>
 
-      {item.images?.map((image) => {
-        return (
+        {/* Slug or short info */}
+        <p className="text-lg text-gray-600 mb-10">{item.slug}</p>
+
+        {/* Description */}
+        {item.description && (
+          <div className="text-lg text-gray-600 mb-10 max-w-prose">
+            {renderRichText(item.description)}
+          </div>
+        )}
+
+        {/* Images */}
+        {item.images?.map((image) => (
           <GatsbyImage
+            key={image.description || image.gatsbyImageData.images.fallback.src}
             className="rounded-lg shadow-lg my-6"
             image={image.gatsbyImageData}
             alt={image.description || item.title}
           />
-        );
-      })}
+        ))}
 
-      {item.image?.description && <p>{item.image.description}</p>}
+        {/* Single image description */}
+        {item.image?.description && (
+          <p className="text-gray-600 mt-2">{item.image.description}</p>
+        )}
+      </div>
     </Layout>
   );
 };
